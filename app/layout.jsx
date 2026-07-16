@@ -8,7 +8,7 @@ import { SITE_URL, SITE_NAME } from "@/lib/data";
 // Paste your Google Analytics Measurement ID here, e.g. "G-ABC123XYZ0"
 const GA_MEASUREMENT_ID = "G-DW22RHRNNN";
 
-export const metadata = {
+ export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: `${SITE_NAME} — Free Resume Builder & ATS-Friendly Templates`,
@@ -16,6 +16,11 @@ export const metadata = {
   },
   description:
     "Build an ATS-friendly resume in minutes with a live preview, 16 templates, and one-click PDF export. Free, no account needed.",
+
+  verification: {
+    google: "JabNucFR2y2UDb547dLKgD0biq56WoR-IMVhH9mgZrY",
+  },
+
   openGraph: {
     siteName: SITE_NAME,
     type: "website",
