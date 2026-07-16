@@ -1,8 +1,12 @@
 import "./globals.css";
+import Script from "next/script";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, SITE_NAME } from "@/lib/data";
+
+// Paste your Google Analytics Measurement ID here, e.g. "G-ABC123XYZ0"
+const GA_MEASUREMENT_ID = "G-DW22RHRNNN";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -45,6 +49,22 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        {GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== "G-XXXXXXXXXX" && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        )}
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
