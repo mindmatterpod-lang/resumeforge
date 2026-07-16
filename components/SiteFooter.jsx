@@ -56,7 +56,7 @@ export default function SiteFooter() {
           ))}
         </div>
       </div>
-      <div className="site-footer-bottom">© 2026 ResumeForge. Built as a demo — not a registered company.</div>
+      <div className="site-footer-bottom">© 2026 ResumeForge.All rights reserved.</div>
     </footer>
   );
 }
