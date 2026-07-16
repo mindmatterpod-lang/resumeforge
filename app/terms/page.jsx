@@ -12,10 +12,6 @@ export default function TermsPageRoute() {
         <p>Last updated July 2026</p>
       </div>
       <div className="privacy-body">
-        <p className="privacy-disclaimer">
-          This page is a starting template, not legal advice — have it reviewed by a lawyer, ideally one familiar
-          with the countries you actually operate in, before relying on it for a real product.
-        </p>
 
         <h2>What this service is</h2>
         <p>
