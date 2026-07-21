@@ -90,72 +90,74 @@ export default function BlogPostPage({ params }) {
         />
       )}
 
-{post.body.map((item, index) => {
+      {post.body.map((item, index) => {
 
-  // Support old blog format
-  if (typeof item === "string") {
-    return (
-      <p key={index} className="blog-detail-para">
-        {item}
-      </p>
-    );
-  }
+        // Support old blog format
+        if (typeof item === "string") {
+          return (
+            <p key={index} className="blog-detail-para">
+              {item}
+            </p>
+          );
+        }
 
-  // Support new rich blog format
-  switch (item.type) {
+        switch (item.type) {
 
-    case "heading":
-      return (
-        <h2 key={index} className="blog-heading">
-          {item.text}
-        </h2>
-      );
+          case "heading":
+            return (
+              <h2 key={index} className="blog-heading">
+                {item.text}
+              </h2>
+            );
 
-    case "paragraph":
-      return (
-        <p key={index} className="blog-detail-para">
-          {item.text}
-        </p>
-      );
+          case "paragraph":
+            return (
+              <p key={index} className="blog-detail-para">
+                {item.text}
+              </p>
+            );
 
-    case "list":
-      return (
-        <ul key={index} className="blog-list">
-          {item.items.map((text, i) => (
-            <li key={i}>{text}</li>
-          ))}
-        </ul>
-      );
+          case "list":
+            return (
+              <ul key={index} className="blog-list">
+                {item.items.map((text, i) => (
+                  <li key={i}>{text}</li>
+                ))}
+              </ul>
+            );
 
-    case "steps":
-      return (
-        <ol key={index} className="blog-steps">
-          {item.items.map((text, i) => (
-            <li key={i}>{text}</li>
-          ))}
-        </ol>
-      );
+          case "steps":
+            return (
+              <ol key={index} className="blog-steps">
+                {item.items.map((text, i) => (
+                  <li key={i}>{text}</li>
+                ))}
+              </ol>
+            );
 
-    case "tip":
-      return (
-        <div key={index} className="blog-tip">
-          💡 <strong>Tip:</strong> {item.text}
-        </div>
-      );
+          case "tip":
+            return (
+              <div key={index} className="blog-tip">
+                💡 <strong>Tip:</strong> {item.text}
+              </div>
+            );
 
-    case "image":
-      return (
-        <Image
-          key={index}
-          src={item.src}
-          alt={item.alt}
-          width={1200}
-          height={675}
-          className="blog-image"
-        />
-      );
+          case "image":
+            return (
+              <Image
+                key={index}
+                src={item.src}
+                alt={item.alt}
+                width={1200}
+                height={675}
+                className="blog-image"
+              />
+            );
 
-    default:
-      return null;
-  }
-})}
+          default:
+            return null;
+        }
+      })}
+    </div>
+  );
+}
