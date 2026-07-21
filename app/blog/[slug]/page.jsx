@@ -90,63 +90,72 @@ export default function BlogPostPage({ params }) {
         />
       )}
 
-      {post.body.map((item, index) => {
-        switch (item.type) {
-          case "heading":
-            return (
-              <h2 key={index} className="blog-heading">
-                {item.text}
-              </h2>
-            );
+{post.body.map((item, index) => {
 
-          case "paragraph":
-            return (
-              <p key={index} className="blog-detail-para">
-                {item.text}
-              </p>
-            );
+  // Support old blog format
+  if (typeof item === "string") {
+    return (
+      <p key={index} className="blog-detail-para">
+        {item}
+      </p>
+    );
+  }
 
-          case "list":
-            return (
-              <ul key={index} className="blog-list">
-                {item.items.map((text, i) => (
-                  <li key={i}>{text}</li>
-                ))}
-              </ul>
-            );
+  // Support new rich blog format
+  switch (item.type) {
 
-          case "steps":
-            return (
-              <ol key={index} className="blog-steps">
-                {item.items.map((text, i) => (
-                  <li key={i}>{text}</li>
-                ))}
-              </ol>
-            );
+    case "heading":
+      return (
+        <h2 key={index} className="blog-heading">
+          {item.text}
+        </h2>
+      );
 
-          case "tip":
-            return (
-              <div key={index} className="blog-tip">
-                💡 <strong>Tip:</strong> {item.text}
-              </div>
-            );
+    case "paragraph":
+      return (
+        <p key={index} className="blog-detail-para">
+          {item.text}
+        </p>
+      );
 
-          case "image":
-            return (
-              <Image
-                key={index}
-                src={item.src}
-                alt={item.alt}
-                width={1200}
-                height={675}
-                className="blog-image"
-              />
-            );
+    case "list":
+      return (
+        <ul key={index} className="blog-list">
+          {item.items.map((text, i) => (
+            <li key={i}>{text}</li>
+          ))}
+        </ul>
+      );
 
-          default:
-            return null;
-        }
-      })}
-    </div>
-  );
-}
+    case "steps":
+      return (
+        <ol key={index} className="blog-steps">
+          {item.items.map((text, i) => (
+            <li key={i}>{text}</li>
+          ))}
+        </ol>
+      );
+
+    case "tip":
+      return (
+        <div key={index} className="blog-tip">
+          💡 <strong>Tip:</strong> {item.text}
+        </div>
+      );
+
+    case "image":
+      return (
+        <Image
+          key={index}
+          src={item.src}
+          alt={item.alt}
+          width={1200}
+          height={675}
+          className="blog-image"
+        />
+      );
+
+    default:
+      return null;
+  }
+})}
