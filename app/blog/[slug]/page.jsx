@@ -47,11 +47,42 @@ export default function BlogPostPage({ params }) {
         {post.date} · {post.readTime}
       </div>
       <h1 className="blog-detail-title">{post.title}</h1>
-      {post.body.map((p, i) => (
+      {post.body.map((item, i) => {
+  switch (item.type) {
+    case "heading":
+      return (
+        <h2 key={i} className="blog-heading">
+          {item.text}
+        </h2>
+      );
+
+    case "paragraph":
+      return (
         <p key={i} className="blog-detail-para">
-          {p}
+          {item.text}
         </p>
-      ))}
-    </div>
-  );
-}
+      );
+
+    case "list":
+      return (
+        <ul key={i} className="blog-list">
+          {item.items.map((x, index) => (
+            <li key={index}>{x}</li>
+          ))}
+        </ul>
+      );
+
+    case "image":
+      return (
+        <img
+          key={i}
+          src={item.src}
+          alt={item.alt}
+          className="blog-image"
+        />
+      );
+
+    default:
+      return null;
+  }
+})}
